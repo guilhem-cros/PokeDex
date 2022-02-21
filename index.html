@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Pokédex</title>
+    <!-- Import Styles -->
+    <link rel="stylesheet" href="./assets/styles.css" />
+    <link href="http://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+    <!-- Import Vue.js -->
+    <script src="https://unpkg.com/vue@3"></script>
+  </head>
+  <body>
+    <header>
+      <div id="head1">
+        <img src="./assets/media/pokeball.png" alt="pokéball" class="logo">
+      </div>
+      <div id="head2">
+        <img src="./assets/media/pokedex.svg" alt="pokédex" class="titleLog">
+      </div>
+    </header>
+    <div id="app">
+      <div class="searchDiv">
+        <h2 id="searchTitle">Nom ou ID du Pokémon : </h2>
+        <div id="searchBar">
+          <input type="text" id="searchField" placeholder="Recherchez un Pokémon...">
+          <img src="./assets/media/search.png" id="searchLogo" class="button" alt="searchLogo">
+        </div>
+      </div>
+      <div class="listPoke">
+        <div class="col1">
+          <img src="assets/media/mugigragass.jpg" alt="mudi", height="100px">
+        </div>
+        <div class="col2">
+            <img src="assets/media/mugigragass.jpg" alt="mudi", height="100px">
+        </div>
+        <div class="col3">
+            <img src="assets/media/mugigragass.jpg" alt="mudi", height="100px">
+        </div>
+        <div class="col4">
+            <img src="assets/media/mugigragass.jpg" alt="mudi", height="100px">
+        </div>
+        <!-- GRID : 4 colonnes -> une case = un component (pokémon = component) -->
+      </div>
+    </div>
+    <footer>
+      <p>©2022 意志 - Ishi.</p>
+      <p>IG3 - 2021/2022</p>
+    </footer>
+    <!-- Import Js -->
+    <script src="./main.js"></script>
+  </body>
+</html>

@@ -34,27 +34,30 @@
       <p>IG3 - 2021/2022</p>
       </footer>
     </div>
-    <!-- Import App -->
-    <script src="./main.js"></script>
+
     <!-- Import Pokedex -->
     <script>
       const P = new Pokedex.Pokedex()
-      const interval = {
-        offset: 1,
-        limit: 100,
-      }
-      let allPoke = []
-      P.getPokemonsList(interval).then(function(response) {
-        allPoke = response
-        console.log(response)
+      /*
+      then(function(){
+        console.log(allPoke[0].url)
+        fetch(allPoke[0].url)}).then(function(response2){
+        console.log(response2)
       })
+      */
     </script>
+
+    <!-- Import App -->
+    <script src="./main.js"></script>
+
     <!-- Import Components -->
     <script src="./components/Detail.js"></script>
     <script src="./components/PokemonList.js"></script>
+
     <!-- Mount App -->
     <script>
       const mountedApp = app.mount('#app')
+      mountedApp.getAllPokemons(1, 100)
     </script>
   </body>
 </html>

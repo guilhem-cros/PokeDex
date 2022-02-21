@@ -7,18 +7,19 @@
     <link rel="stylesheet" href="./assets/styles.css" />
     <link href="http://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
     <!-- Import Vue.js -->
+    <script src="https://unpkg.com/pokeapi-js-wrapper/dist/index.js"></script>
     <script src="https://unpkg.com/vue@3"></script>
   </head>
   <body>
-    <header>
-      <div id="head1">
-        <img src="./assets/media/pokeball.png" alt="pokéball" class="logo">
-      </div>
-      <div id="head2">
-        <img src="./assets/media/pokedex.svg" alt="pokédex" class="titleLog">
-      </div>
-    </header>
     <div id="app">
+      <header>
+        <div id="head1">
+          <img src="./assets/media/pokeball.png" alt="pokéball" class="logo">
+        </div>
+        <div id="head2">
+          <img src="./assets/media/pokedex.svg" alt="pokédex" class="titleLog">
+        </div>
+      </header>
       <div class="searchDiv">
         <h2 id="searchTitle">Nom ou ID du Pokémon : </h2>
         <div id="searchBar">
@@ -26,27 +27,34 @@
           <img src="./assets/media/search.png" id="searchLogo" class="button" alt="searchLogo">
         </div>
       </div>
-      <div class="listPoke">
-        <div class="col1">
-          <img src="assets/media/mugigragass.jpg" alt="mudi", height="100px">
-        </div>
-        <div class="col2">
-            <img src="assets/media/mugigragass.jpg" alt="mudi", height="100px">
-        </div>
-        <div class="col3">
-            <img src="assets/media/mugigragass.jpg" alt="mudi", height="100px">
-        </div>
-        <div class="col4">
-            <img src="assets/media/mugigragass.jpg" alt="mudi", height="100px">
-        </div>
-        <!-- GRID : 4 colonnes -> une case = un component (pokémon = component) -->
-      </div>
-    </div>
-    <footer>
+      <list-pokemon v-show="!showDetails"></list-pokemon>
+      <pokemon-detail v-show="showDetails"></pokemon-detail>
+      <footer>
       <p>©2022 意志 - Ishi.</p>
       <p>IG3 - 2021/2022</p>
-    </footer>
-    <!-- Import Js -->
+      </footer>
+    </div>
+    <!-- Import App -->
     <script src="./main.js"></script>
+    <!-- Import Pokedex -->
+    <script>
+      const P = new Pokedex.Pokedex()
+      const interval = {
+        offset: 1,
+        limit: 100,
+      }
+      let allPoke = []
+      P.getPokemonsList(interval).then(function(response) {
+        allPoke = response
+        console.log(response)
+      })
+    </script>
+    <!-- Import Components -->
+    <script src="./components/Detail.js"></script>
+    <script src="./components/PokemonList.js"></script>
+    <!-- Mount App -->
+    <script>
+      const mountedApp = app.mount('#app')
+    </script>
   </body>
 </html>

@@ -1,10 +1,4 @@
 app.component('pokemon-detail', {
-  props:{
-    details :{
-        type : Array,
-        required: true
-    }
-  },
   template:
   /*html*/
   `<div class="pokemon-detail">
@@ -21,13 +15,23 @@ app.component('pokemon-detail', {
   </div>`,
   data() {
       return{
-
+        id : ""
       }
   },
   methods: {
+    showPokemon(details){
+      this.id=details.id
+      this.$emit('details-showing')
+    }
 
   },
   computed: {
-
+    image(){
+      return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/" + this.id +  ".svg"
+    },
+    idPrint(){
+      let chaine = ""
+      return "#" + chaine + this.id
+    },
   }
 })

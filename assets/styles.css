@@ -83,18 +83,19 @@ header{
 }
 
 .button:hover{
-  zoom:105%;
+  zoom:102%;
   opacity: 0.9;
   cursor: pointer;
+  margin: 0;
 }
 
 .listPoke{
   display : grid;
-  background-color: white;
 }
 
 .col1{
   grid-column:1;
+
 }
 .col2{
   grid-column:2;
@@ -125,13 +126,6 @@ header{
   grid-column: 2;
 }
 
-.pokeName{
-  grid-column: 2;
-  font-family: 'Pokemon Solid', sans-serif;
-  font-weight: lighter;
-  margin: 0;
-}
-
 .types{
   grid-row :1;
   grid-column: 3;
@@ -144,6 +138,45 @@ header{
 
 .empty{
   grid-column: 4;
+}
+
+.pokemon{
+  background-color: white;
+  border-radius: 3px;
+  margin: 3%;
+  text-align: center;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+}
+
+.pokeImg{
+  width: 100%;
+}
+
+.pokeInfo{
+  display: inline-flex;
+  font-family: 'Minecraft', sans-serif;
+  font-weight: lighter;
+}
+
+.pokeName{
+  margin: 0;
+  padding:1%;
+}
+
+.pokeId{
+  margin: 0;
+  padding:1%;
+  color : #615C56;
+}
+
+.pokemon:hover{
+  zoom:102%;
+  cursor: pointer;
+  opacity: 0.8;
+  margin: 0;
 }
 
 footer{

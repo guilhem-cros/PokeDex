@@ -6,12 +6,13 @@
     <!-- Import Styles -->
     <link rel="stylesheet" href="./assets/styles.css" />
     <link href="http://fonts.cdnfonts.com/css/pokemon-solid" rel="stylesheet">
+    <link href="http://fonts.cdnfonts.com/css/minecraft-4" rel="stylesheet">
     <!-- Import Vue.js -->
     <script src="https://unpkg.com/pokeapi-js-wrapper/dist/index.js"></script>
     <script src="https://unpkg.com/vue@3"></script>
   </head>
   <body>
-    <div id="app">
+    <div id="app" @details-showing="swapDisplay">
       <header>
         <div id="head1">
           <img src="./assets/media/pokeball.png" alt="pokéball" class="logo">
@@ -27,8 +28,8 @@
           <img src="./assets/media/search.png" id="searchLogo" class="button" alt="searchLogo">
         </div>
       </div>
-      <list-pokemon v-show="!showDetails"></list-pokemon>
-      <pokemon-detail v-show="showDetails"></pokemon-detail>
+      <list-pokemon v-if="!showDetails" :list="pokemons"></list-pokemon>
+      <pokemon-detail v-if="showDetails" @show-details="showPokemon"></pokemon-detail>
       <footer>
       <p>©2022 意志 - Ishi.</p>
       <p>IG3 - 2021/2022</p>
@@ -38,13 +39,6 @@
     <!-- Import Pokedex -->
     <script>
       const P = new Pokedex.Pokedex()
-      /*
-      then(function(){
-        console.log(allPoke[0].url)
-        fetch(allPoke[0].url)}).then(function(response2){
-        console.log(response2)
-      })
-      */
     </script>
 
     <!-- Import App -->
@@ -53,11 +47,17 @@
     <!-- Import Components -->
     <script src="./components/Detail.js"></script>
     <script src="./components/PokemonList.js"></script>
+    <script src="./components/Pokemon.js"></script>
 
     <!-- Mount App -->
     <script>
+      const interval = {offset : 0, limit : 10}
       const mountedApp = app.mount('#app')
-      mountedApp.getAllPokemons(1, 100)
+      P.getPokemonsList(interval).then(function(response){ //récupération des infos pokémons
+          return response.results.slice()
+        }).then(function(response){
+        mountedApp.pokemons = response.slice()
+      })
     </script>
   </body>
 </html>

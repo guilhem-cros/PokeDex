@@ -20,6 +20,8 @@ app.component('pokemon-detail', {
   },
   methods: {
     showPokemon(details){
+      console.log("1")
+      console.log(details)
       this.id=details.id
       this.$emit('details-showing')
     }

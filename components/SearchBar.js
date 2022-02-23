@@ -27,13 +27,21 @@ app.component('search-bar',{
             if(text.length>0){
                 for(let i=0; i<this.list.length; i++){
                     item = this.list[i]
-                    if(item.name.toLowerCase().includes(text.toLowerCase()) || item.id.includes(text)){
+                    idPrint = this.getIdPrint(item.id)
+                    if(item.name.toLowerCase().includes(text.toLowerCase()) || item.id.includes(text) || idPrint.includes(text)){
                         retour.push(item)
                     }
                 }
             }
             this.listOfResult = retour
             this.$emit('searched', this.listOfResult)
+        },
+        getIdPrint(id){
+            let chaine = ""
+            while(chaine.length + id.length < 3){
+                chaine = chaine + "0"
+            }
+            return chaine + id
         }
     }
 })

@@ -6,7 +6,12 @@ app.component('c-header', {
           <img src="./assets/media/pokeball.png" alt="pokéball" class="logo">
         </div>
         <div id="head2">
-          <img src="./assets/media/pokedex.svg" alt="pokédex" class="titleLog">
+          <img src="./assets/media/pokedex.svg" alt="pokédex" class="titleLog" @click="refresh">
         </div>
-    </header>`
+    </header>`,
+    methods:{
+      refresh(){
+        location.reload()
+      }
+    }
 })

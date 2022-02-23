@@ -34,6 +34,10 @@ const app = Vue.createApp({
           if(list.length>0){
             this.normalizedList = list.slice()
           }
+          else{
+            this.normalizeList()
+          }
+          this.showDetails=false
         },
         normalizeList(){
           let newList = []

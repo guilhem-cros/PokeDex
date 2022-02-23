@@ -26,8 +26,8 @@ app.component('search-bar',{
             let retour = []
             if(text.length>0){
                 for(let i=0; i<this.list.length; i++){
-                    item = this.list[i]
-                    idPrint = this.getIdPrint(item.id)
+                    let item = this.list[i]
+                    let idPrint = this.getIdPrint(item.id)
                     if(item.name.toLowerCase().includes(text.toLowerCase()) || item.id.includes(text) || idPrint.includes(text)){
                         retour.push(item)
                     }

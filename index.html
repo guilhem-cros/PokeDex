@@ -14,14 +14,8 @@
   <body>
     <div id="app">
       <c-header></c-header>
-      <div class="searchDiv">
-        <h2 id="searchTitle">Name or ID of the Pokémon : </h2>
-        <div id="searchBar">
-          <input type="text" id="searchField" placeholder="Search for a Pokémon...">
-          <img src="./assets/media/search.png" id="searchLogo" class="button" alt="searchLogo">
-        </div>
-      </div>
-      <list-pokemon v-if="!showDetails" :list="pokemons" @send-details="sendDetails"></list-pokemon>
+      <search-bar :list="fixedList" @searched="getFiltredList"></search-bar>
+      <list-pokemon v-if="!showDetails" :list="normalizedList" @send-details="sendDetails"></list-pokemon>
       <pokemon-detail v-if="showDetails" :details="details[0]" @close-details="showList"></pokemon-detail>
       <c-footer></c-footer>
     </div>
@@ -40,15 +34,16 @@
     <script src="./components/Pokemon.js"></script>
     <script src="./components/Header.js"></script>
     <script src="./components/Footer.js"></script>
-
+    <script src="./components/SearchBar.js"></script>
     <!-- Mount App -->
     <script>
-      const interval = {offset : 0, limit : 100}
+      const interval = {offset : 0, limit : 151}
       const mountedApp = app.mount('#app')
       P.getPokemonsList(interval).then(function(response){ //récupération des infos pokémons
           return response.results.slice()
         }).then(function(response){
         mountedApp.pokemons = response.slice()
+        mountedApp.normalizeList()
       })
     </script>
   </body>

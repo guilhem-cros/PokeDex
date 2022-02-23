@@ -1,0 +1,3 @@
+app.component('search-bar',{
+    
+})

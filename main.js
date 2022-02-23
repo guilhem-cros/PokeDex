@@ -6,12 +6,19 @@ const app = Vue.createApp({
         showDetails : false,
       }
     },
+
     methods: {
-        swapDisplay(){
-          this.showDetails=!this.showDetails
+        showList(){
+          this.details = []
+          this.showDetails = false
+        },
+        sendDetails(details){
+          this.details = details
+          this.showDetails = true
         }
     },
+
     computed:{
-      
+
     },
   })

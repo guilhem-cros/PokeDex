@@ -1,39 +1,59 @@
 app.component('pokemon-detail', {
+  props: {
+    details: {
+        type: Object,
+        required: true,
+    }
+  },
+
   template:
   /*html*/
   `<div class="pokemon-detail">
-    <img src="assets/media/mugigragass.jpg" alt="img" height="300px" class="detailImg">
-    <p class="id">#id</p>
-    <h2 class="pokeName">Name</h2>
-    <ul class="types">
-      <li>Feu</li>
-      <li>Dragon</li>
-      <li>Dragon</li>
-    </ul>
-    <p class="pokeDesc">C'est un putain de pokémon chef</p>
-    <p class="empty"></p>
+    <img :src="image" :alt="details.name" height="300px" class="detailImg">
+    <div class="types">
+    <h2>Type(s)</h2>
+      <ul class="listTypes">
+        <li v-for="(item) in details.types">{{ item.type.name }}</li>
+      </ul>
+    </div>
+    <p class="pokeDesc">{{details.flavorText}}</p>
+    <div class="bottom-detail">
+      <p class="detailName">{{details.name}}</p>
+      <p class="id">{{idPrint}}</p>
+    </div>
+    <p class="back-button" @click="backToList">Back to the list</p>
+
   </div>`,
+
   data() {
       return{
-        id : ""
+
       }
   },
+
   methods: {
-    showPokemon(details){
-      console.log("1")
-      console.log(details)
-      this.id=details.id
-      this.$emit('details-showing')
+    backToList(){
+      this.$emit('close-details')
     }
 
   },
+
   computed: {
     image(){
-      return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/" + this.id +  ".svg"
+      return "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/" + this.details.id +  ".svg"
     },
     idPrint(){
       let chaine = ""
-      return "#" + chaine + this.id
+      while(chaine.length + this.details.id.length < 3){
+        chaine = chaine + "0"
+      }
+      return "#" + chaine + this.details.id
     },
+    size(){
+      return this.details.height + " m"
+    },
+    weight(){
+      return this.details.weight + " kg"
+    }
   }
 })
